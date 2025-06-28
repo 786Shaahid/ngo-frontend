@@ -96,7 +96,7 @@ const ProgramsSection = () => {
     return (
         <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 8 } }}>
             {/* Section Header */}
-            <Box mb={6} textAlign="center">
+            <Box mb={6} textAlign="left">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
