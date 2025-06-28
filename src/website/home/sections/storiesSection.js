@@ -6,12 +6,13 @@ import {
     CardMedia,
     CardContent,
     useTheme,
+    Grid,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { BodyText1, BodyText2, CardTitle, Headline } from '../../../styles/typographyStyle';
 import { ArrowForward } from '@mui/icons-material';
 import { ContainedButton, OutlinedButton } from '../../../styles/styleButton';
-import CarouselComponent from '../../../components/common/CarouselComponent';
+// import CarouselComponent from '../../../components/common/CarouselComponent';
 
 const MotionCard = motion(Card);
 
@@ -134,12 +135,20 @@ const StoriesSection = () => {
                 </motion.div>
             </Box>
 
-            {/* Stories Carousel */}
+            {/* Stories Grid - Temporarily replacing carousel */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
             >
+                <Grid container spacing={3}>
+                    {stories.map((story, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                            <StoryCard story={story} index={index} />
+                        </Grid>
+                    ))}
+                </Grid>
+                {/*
                 <CarouselComponent
                     autoPlay={true}
                     autoPlaySpeed={5000}
@@ -168,6 +177,7 @@ const StoriesSection = () => {
                         <StoryCard key={index} story={story} index={index} />
                     ))}
                 </CarouselComponent>
+                */}
             </motion.div>
 
             {/* CTA */}

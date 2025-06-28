@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 import { ContainedButton, OutlinedButton } from '../../../styles/styleButton';
 import { BodyText1, BodyText2, CardTitle, Headline } from '../../../styles/typographyStyle';
 import { ArrowForward } from '@mui/icons-material';
-import CarouselComponent from '../../../components/common/CarouselComponent';
+// import CarouselComponent from '../../../components/common/CarouselComponent';
 
 const MotionCard = motion(Card);
 
@@ -111,12 +111,20 @@ const ProgramsSection = () => {
                 </motion.div>
             </Box>
 
-            {/* Programs Carousel */}
+            {/* Programs Grid - Temporarily replacing carousel */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
             >
+                <Grid container spacing={3}>
+                    {programs.map((program, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                            <ProgramCard program={program} index={index} />
+                        </Grid>
+                    ))}
+                </Grid>
+                {/* 
                 <CarouselComponent
                     autoPlay={true}
                     autoPlaySpeed={4000}
@@ -145,6 +153,7 @@ const ProgramsSection = () => {
                         <ProgramCard key={index} program={program} index={index} />
                     ))}
                 </CarouselComponent>
+                */}
             </motion.div>
 
             {/* CTA Section */}
