@@ -17,7 +17,7 @@ const MotionCard = motion(Card);
 
 const stories = [
     {
-        title: 'From Illness to Hope: Rani's Journey',
+        title: 'From Illness to Hope: Rani\'s Journey',
         excerpt: 'Rani received vital treatment through our program and is now thriving with her family.',
         image: "https://media.istockphoto.com/id/524903696/photo/poor-indian-children-asking-for-food-india.webp?a=1&b=1&s=612x612&w=0&k=20&c=DqMSvVaXQxISjdvfNizw6F9ZkaCBMy42Yk6agRcJUE8=",
         category: "Healthcare Success",
@@ -38,7 +38,7 @@ const stories = [
         date: "January 5, 2024"
     },
     {
-        title: 'Education Changes Everything: Priya's Story',
+        title: 'Education Changes Everything: Priya\'s Story',
         excerpt: 'How our scholarship program helped Priya become the first graduate in her family.',
         image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60",
         category: "Education Success",
