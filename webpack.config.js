@@ -63,8 +63,14 @@ const config = {
     static: { directory: path.resolve(__dirname, 'public') },
     compress: true,
     port: 2003,
+    host: '0.0.0.0',
     historyApiFallback: true,
     hot: true,
+    client: {
+      webSocketURL: {
+        hostname: '0.0.0.0',
+      },
+    },
   },
   resolve: {
     alias: {
