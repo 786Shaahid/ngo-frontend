@@ -20,9 +20,9 @@ const pages = [
   {
     name: "Projects",
     subpages: [
-      { label: "Ongoing", path: "/projects/ongoing" },
-      { label: "Completed", path: "/projects/completed" },
-      { label: "Upcoming", path: "/projects/upcoming" }
+      // { label: "Ongoing", path: "/projects/ongoing" },
+      // { label: "Completed", path: "/projects/completed" },
+      // { label: "Upcoming", path: "/projects/upcoming" }
     ]
   },
   {
