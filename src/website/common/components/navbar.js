@@ -8,7 +8,6 @@ import { Menu as MenuIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { NavDonateButton, NavItemButton } from '../../../styles/styleButton';
 import { StyleStackCenter } from '../../../styles/typographyStyle';
-import logo from '../../../assets/images/logo.png';
 import LogoComponent from './logoComponent';
 
 const pages = [
@@ -19,11 +18,8 @@ const pages = [
   },
   {
     name: "Projects",
-    subpages: [
-      // { label: "Ongoing", path: "/projects/ongoing" },
-      // { label: "Completed", path: "/projects/completed" },
-      // { label: "Upcoming", path: "/projects/upcoming" }
-    ]
+    path: '/projects',
+    subpages: []
   },
   {
     name: "Events",
@@ -32,7 +28,7 @@ const pages = [
   },
   {
     name: "Career",
-    path: 'career',
+    path: '/career',
     subpages: []
   },
   {
@@ -44,11 +40,6 @@ const pages = [
       { label: "Contact Us", path: "/about/contact" }
     ]
   },
-  {
-    name: "Contact Us",
-    path: 'contactus',
-    subpages: []
-  },
 ];
 
 const Navbar = () => {
@@ -57,6 +48,14 @@ const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+
+  const handleNavigation = (path) => {
+    if (path) {
+      navigate(path);
+    }
+    setAnchorElSubNav(null);
+    setDrawerOpen(false);
+  };
 
   return (
     <Box>
@@ -67,24 +66,29 @@ const Navbar = () => {
             sx={{
               padding: '0.2rem',
               gap: { xs: 1, sm: 1 },
-
             }}
           >
-            <Typography color='primary.contrastText' sx={{ typography: { xs: 'caption', sm: 'body2' } }} >
+            <Typography color='primary.contrastText' sx={{ typography: { xs: 'caption', sm: 'body2' } }}>
               🌟 Support Our Cause, Change Lives 🎉
             </Typography>
             {/* Donate Button */}
             <NavDonateButton sx={{ p: '1px 8px', whiteSpace: 'nowrap' }} onClick={() => navigate('/donate')}>
               Donate Now
             </NavDonateButton>
-
           </StyleStackCenter>
         </Container>
         <Container maxWidth="xl" sx={{ bgcolor: 'primary.contrastText' }}>
           <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
             {/* Logo and Name */}
-            <Typography variant="h6" fontWeight={'bold'} color='primary.main' component="div" sx={{ display: 'flex', alignItems: 'center' }}>
-              <LogoComponent src={logo} />
+            <Typography 
+              variant="h6" 
+              fontWeight={'bold'} 
+              color='primary.main' 
+              component="div" 
+              sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+              onClick={() => navigate('/')}
+            >
+              <LogoComponent />
               The Help Sansthan
             </Typography>
 
@@ -100,11 +104,11 @@ const Navbar = () => {
                     onMouseEnter={(e) => setAnchorElSubNav({ anchor: e.currentTarget, name: page.name })}
                     onMouseLeave={() => setAnchorElSubNav(null)}
                   >
-                    <NavItemButton>
+                    <NavItemButton onClick={() => handleNavigation(page.path)}>
                       {page.name}
                     </NavItemButton>
                     {/* Dropdown Menu */}
-                    {page.subpages.length ? (
+                    {page.subpages.length > 0 && (
                       <Menu
                         anchorEl={anchorElSubNav?.anchor}
                         open={isOpen}
@@ -119,22 +123,20 @@ const Navbar = () => {
                         {page.subpages.map((subpage, index) => (
                           <MenuItem
                             key={index}
-                            onClick={() => {
-                              navigate(subpage.path);
-                              setAnchorElSubNav(null); // Close menu after navigation
-                            }}
+                            onClick={() => handleNavigation(subpage.path)}
                           >
                             {subpage.label}
                           </MenuItem>
                         ))}
                       </Menu>
-                    ) : ''}
+                    )}
                   </Box>
                 );
               })}
             </Box>
+
             {/* Login/Sign-up Buttons */}
-            <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
               <Button onClick={() => navigate('/login')}>Login</Button>
               <Button variant="outlined" onClick={() => navigate('/signup')}>Sign Up</Button>
             </Box>
@@ -151,21 +153,33 @@ const Navbar = () => {
 
       {/* Drawer for Mobile View */}
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer}>
-        <List>
+        <List sx={{ width: 250 }}>
           {pages.map((page) => (
-            <ListItem key={page.name} button onClick={() => navigate(page.path)}>
-              <ListItemText primary={page.name} />
-            </ListItem>
+            <div key={page.name}>
+              <ListItem button onClick={() => handleNavigation(page.path)}>
+                <ListItemText primary={page.name} />
+              </ListItem>
+              {page.subpages.map((subpage, index) => (
+                <ListItem 
+                  key={index} 
+                  button 
+                  onClick={() => handleNavigation(subpage.path)}
+                  sx={{ pl: 4 }}
+                >
+                  <ListItemText primary={subpage.label} />
+                </ListItem>
+              ))}
+            </div>
           ))}
-          <ListItem button onClick={() => navigate('/login')}>
+          <ListItem button onClick={() => handleNavigation('/login')}>
             <ListItemText primary="Login" />
           </ListItem>
-          <ListItem button onClick={() => navigate('/signup')}>
+          <ListItem button onClick={() => handleNavigation('/signup')}>
             <ListItemText primary="Sign Up" />
           </ListItem>
         </List>
       </Drawer>
-    </Box >
+    </Box>
   );
 };
 
