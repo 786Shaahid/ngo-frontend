@@ -10,6 +10,7 @@ const OurMission = React.lazy(() => import('../components/OurMission'));
 const OurTeam = React.lazy(() => import('../components/OurTeam'));
 const Contact = React.lazy(() => import('../components/ContactUs'));
 const OurValue = React.lazy(() => import('../components/OurValue'));
+const AboutUs = React.lazy(() => import('../components/AboutUs'));
 const Login = React.lazy(() => import('../components/Login'));
 const Signup = React.lazy(() => import('../components/Signup'));
 const ProjectsSection = React.lazy(() => import('../components/projects/ProjectsSection'));
@@ -31,6 +32,7 @@ const AppRoutes = () => {
           <Route path='/projects' element={<ProjectsSection />} />
           <Route path='/events' element={<EventsSection />} />
           <Route path='/career' element={<CareersSection />} />
+          <Route path='/about' element={<AboutUs />} />
           <Route path='/about/mission' element={<OurMission />} />
           <Route path='/about/value' element={<OurValue />} />
           <Route path='/about/team' element={<OurTeam />} />

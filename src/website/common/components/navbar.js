@@ -34,6 +34,7 @@ const pages = [
   {
     name: "About",
     subpages: [
+      { label: "About Us", path: "/about" },
       { label: "Our Mission", path: "/about/mission" },
       { label: "Our values", path: "/about/value" },
       { label: "Our Team", path: "/about/team" },
