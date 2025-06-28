@@ -1,7 +1,6 @@
 
 import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { Education } from '../components/Education';
+import { Route, Routes } from 'react-router-dom';
 import { OurMission } from '../components/OurMission';
 import { OurTeam } from '../components/OurTeam';
 import { Contact } from '../components/ContactUs';
